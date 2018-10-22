@@ -1,15 +1,17 @@
 package Sales;
 /**
- * Name:
- * Date:
- * Period:
+ * Name: ivan krat
+ * Date: 10/18/18
+ * Period: 1st
  *
  * Sales.Sales.java
  *
  * Reads in and stores sales for each of 5 salespeople.  Displays
  * sales entered by salesperson id and total sales for all salespeople.
  */
-import sun.jvm.hotspot.oops.Array;
+//import sun.jvm.hotspot.oops.Array;
+
+import com.sun.org.apache.xalan.internal.res.XSLTErrorResources_pt_BR;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -21,12 +23,12 @@ public class Sales
 
         Scanner scan = new Scanner(System.in);
 
-        //TODO 4) Prompt the user for the number of sales people that they need to enter
-        //TODO 4) and modify the program to create an appropriately sized array.
+        //Prompt the user for the number of sales people that they need to enter
+        System.out.println("Input how many people are int the sale: ");
+        //and modify the program to create an appropriately sized array.
+        int salesPeople = scan.nextInt();
 
-        
-        final int SALESPEOPLE = 5;
-        int[] sales = new int[SALESPEOPLE];
+        int[] sales = new int[salesPeople];
         int sum;
 
         for (int i=0; i < sales.length; i++)
@@ -35,7 +37,7 @@ public class Sales
             sales[i] = scan.nextInt();
         }
         //print the array for verification
-        //System.out.println(Arrays.toString(sales));
+        System.out.println(Arrays.toString(sales));
 
         System.out.println("\nSalesperson   Sales");
         System.out.println("--------------------");
@@ -49,14 +51,19 @@ public class Sales
         System.out.println("\nTotal sales: " + sum);
 
 
-        //TODO 1b) Use your average method to print the average sales
+        //) Use your average method to print the average sales
+        System.out.println(average(sales));
 
 
-        //TODO 2b) Use your indexOfMax method to print the index of the best sales person
-        //TODO 2b) and the sales amount for that sales person.
+        //Use your indexOfMax method to print the index of the best sales person
+        System.out.println(indexOfMax(sales));
+        //and the sales amount for that sales person.
+        System.out.println(sales[indexOfMax(sales)]);
 
 
-        //TODO 3b) Do the same for the worst sales person
+        //Do the same for the worst sales person
+        System.out.println(indexOfMin(sales));
+        System.out.println(sales[indexOfMin(sales)]);
 
 
 
@@ -64,21 +71,46 @@ public class Sales
 
     public static double average(int[] arr) throws IllegalStateException
     {
-        //TODO 1a) compute and return the average of arr
-        //Be sure to use the length instance variable and you may assume that the array is full.
-        //If the array does not have at least 1 element in it, throw an IllegalStateException
-
-        return 0;
+        //compute and return the average of arr
+        int x = 0;
+        if (arr.length == 0) {
+            throw new IllegalStateException("Array arr must have at least one element.");
+        }
+        for(int i = 0; i < arr.length; i++) {
+            x += arr[i];
+        }
+        x /= arr.length;
+        return x;
     }
 
     public static int indexOfMax(int[] arr)
     {
-        //TODO 2a) find and return the index of the max value in arr
-
-        return 0;
+        //find and return the index of the max value in arr
+        int x = 0;
+        int y = -1;
+        for(int i = 0; i < arr.length; i++) {
+            if(x < arr[i]) {
+                x = arr[i];
+                y = i;
+            }
+        }
+        return y;
     }
 
-    //TODO 3a) Do the same for an indexOfMin method
+    //Do the same for an indexOfMin method
+    public static int indexOfMin(int[] arr)
+    {
+        //find and return the index of the max value in arr
+        int x = 0;
+        int y = -1;
+        for(int i = 0; i < arr.length; i++) {
+            if(x > arr[i]) {
+                x = arr[i];
+                y = i;
+            }
+        }
+        return y;
+    }
 
 
 }
